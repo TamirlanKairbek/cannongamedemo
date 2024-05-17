@@ -30,5 +30,12 @@ class Level(Widget):
             target = Target(pos=pos, size=(30, 30))  # Располагаем мишени в фиксированных местах на уровне
             self.add_widget(target)  # Добавляем мишени в уровень
 
+    def check_collision(self, ball):
+        for target in self.children[:]:
+            if ball.collide_widget(target):
+                self.remove_widget(target)
+                ball.reset_ball()
+                break
+
 class Cannon(Widget):
     pass

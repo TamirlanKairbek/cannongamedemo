@@ -19,16 +19,23 @@ class PongBall(Widget):
         super(PongBall, self).__init__(**kwargs)
         self.size_hint = (None, None)  
         self.size = (20, 20)
+        self.initial_pos = (100, 100)
+        self.pos = self.initial_pos
 
     def move(self, dt):
         self.velocity_y -= self.acceleration  
         self.pos = Vector(*self.velocity) + self.pos  
 
         if self.y > 700 or self.y < 0 or self.x > 1000 or self.x < 0:
-            self.pos = (100, 100)
-            self.velocity = Vector(0, 0)
-            self.acceleration = 0   
-            self.is_launched = False   
+            self.reset_ball()
+
+        self.parent.level.check_collision(self)
+
+    def reset_ball(self):
+        self.pos = self.initial_pos
+        self.velocity = Vector(0, 0)
+        self.acceleration = 0
+        self.is_launched = False
 
     def on_touch_down(self, touch):
         if self.collide_point(*touch.pos) and not self.is_launched:
