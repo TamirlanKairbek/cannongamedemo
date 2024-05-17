@@ -6,3 +6,21 @@
         Ellipse:
             pos: self.pos  # Позиция мяча
             size: self.size  # Размер мяча
+
+<Level>:
+    canvas.before:
+        Color:
+            rgba: 0.1, 0.1, 0.1, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<Target>:
+    size_hint: None, None
+    size: 30, 30
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1  # Белый цвет
+        Rectangle:
+            pos: self.pos
+            size: self.size
