@@ -4,8 +4,8 @@ from kivy.clock import Clock
 from kivy.config import Config
 from kivy.lang import Builder
 
-from cannon import PongBall  # Импортируем класс PongBall из файла cannon.py
-from level import Level  # Импортируем класс Level из файла level.py
+from cannon import PongBall
+from level import Level
 
 Config.set('graphics', 'width', '1000')
 Config.set('graphics', 'height', '700')
