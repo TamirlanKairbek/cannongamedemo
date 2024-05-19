@@ -1,11 +1,20 @@
 #:kivy 1.0.9
 
 <PongBall>:
-    size: 30, 30  # Устанавливаем размер мяча
+    size: 30, 30
     canvas:
         Ellipse:
-            pos: self.pos  # Позиция мяча
-            size: self.size  # Размер мяча
+            pos: self.pos
+            size: self.size
+
+<Laser>:
+    size: 20, 20
+    canvas:
+        Color:
+            rgba: 1, 0, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
 
 <Level>:
     canvas.before:
@@ -20,7 +29,7 @@
     size: 30, 30
     canvas:
         Color:
-            rgba: 1, 1, 1, 1  # Белый цвет
+            rgba: 1, 1, 1, 1
         Rectangle:
             pos: self.pos
             size: self.size

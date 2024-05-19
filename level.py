@@ -32,11 +32,12 @@ class Level(Widget):
 
     def check_collision(self, ball):
         for target in self.children[:]:
-            print(target)
             if ball.collide_widget(target):
                 self.remove_widget(target)
                 ball.reset_ball()
                 break
+
+
 
 class Cannon(Widget):
     pass
