@@ -14,7 +14,7 @@ class Target(Widget):
         super().__init__(**kwargs)
         with self.canvas:
             Color(1, 1, 1, 1)  # Белый цвет
-            self.rect = Rectangle(size=(30, 30), pos=self.pos)
+            self.rect = Rectangle(size=(20, 20), pos=self.pos)  # Уменьшаем размер целей до 20x20
         self.bind(pos=self.update_rect, size=self.update_rect)
 
     def update_rect(self, *args):
@@ -27,8 +27,16 @@ class Level(Widget):
         # Определяем фиксированные позиции для трех мишеней
         positions = [(500, 300), (400, 600), (600, 200)]
         for pos in positions:
-            target = Target(pos=pos, size=(30, 30))  # Располагаем мишени в фиксированных местах на уровне
+            target = Target(pos=pos, size=(20, 20))  # Располагаем мишени в фиксированных местах на уровне
             self.add_widget(target)  # Добавляем мишени в уровень
+            self.add_targets_around(pos)  # Добавляем цели вокруг текущей цели
+
+    def add_targets_around(self, pos):
+        offsets = [(-30, 0), (30, 0), (0, -30), (0, 30), (-30, -30), (30, -30), (-30, 30), (30, 30)]
+        for offset in offsets:
+            new_pos = (pos[0] + offset[0], pos[1] + offset[1])
+            target = Target(pos=new_pos, size=(20, 20))  # Создаем новую цель
+            self.add_widget(target)  # Добавляем новую цель в уровень
 
     def check_collision(self, ball):
         for target in self.children[:]:
@@ -36,8 +44,6 @@ class Level(Widget):
                 self.remove_widget(target)
                 ball.reset_ball()
                 break
-
-
-
+            
 class Cannon(Widget):
     pass
